@@ -109,10 +109,10 @@ $$
 d_c(z) = \| z - \mu_c \|_2
 $$
 
-The candidate class $c^*$ is selected as:
+The candidate class $c^{*}$ is selected as:
 
 $$
-c^* = \arg\min_c \; d_c(z)
+c^{*} = \arg\min_c \; d_c(z)
 $$
 
 This step identifies the geometrically closest class prototype.
@@ -121,16 +121,16 @@ This step identifies the geometrically closest class prototype.
 
 Each class defines a confidence region represented by a hypersphere centered at $\mu_c$ with radius $r_c$.
 
-The embedding \( z \) is accepted as belonging to class $c^*$ only if:
+The embedding \( z \) is accepted as belonging to class $c^{*}$ only if:
 
 $$
-d_{c^*}(z) \le r_{c^*}
+d_{c^{*}}(z) \le r_{c^{*}}
 $$
 
 If
 
 $$
-d_{c^*}(z) > r_{c^*},
+d_{c^{*}}(z) > r_{c^{*}},
 $$
 
 the sample lies outside all class-specific confidence regions and is rejected.
@@ -141,10 +141,10 @@ The prediction function is defined as:
 
 $$
 \hat{y}(z) =
-\begin{cases}
-c^* & \text{if } d_{c^*}(z) \le r_{c^*} \\
+\begin{array}{ll}
+c^{*} & \text{if } d_{c^{*}}(z) \le r_{c^{*}} \\
 \text{NO\_DETECT} & \text{otherwise}
-\end{cases}
+\end{array}
 $$
 
 where $\hat{y}(z)$ denotes the predicted label produced by the radial decision rule.
