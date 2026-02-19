@@ -121,19 +121,9 @@ This step identifies the geometrically closest class prototype.
 
 Each class defines a confidence region represented by a hypersphere centered at $\mu_c$ with radius $r_c$.
 
-The embedding \( z \) is accepted as belonging to class $c^{*}$ only if:
+The embedding \( z \) is accepted as belonging to class $c^{*}$ only if: $d_{c^{*}}(z) \le r_{c^{*}}$
 
-$$
-d_{c^{*}}(z) \le r_{c^{*}}
-$$
-
-If
-
-$$
-d_{c^{*}}(z) > r_{c^{*}},
-$$
-
-the sample lies outside all class-specific confidence regions and is rejected.
+If $d_{c^{*}}(z) > r_{c^{*}}$ the sample lies outside all class-specific confidence regions and is rejected.
 
 ### 3) Final Decision Function
 
