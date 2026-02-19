@@ -15,7 +15,7 @@ This approach was developed as part of a thesis project on amphibian ecoacoustic
 
 ## Mathematical Formulation
 
-For each class \( c \):
+For each class $c$:
 
 Let  
 
@@ -23,9 +23,9 @@ $$
 Z_c \in \mathbb{R}^{N_c \times D}
 $$
 
-be the matrix of latent embeddings belonging to class \( c \), where:
+be the matrix of latent embeddings belonging to class $c$, where:
 
-- $N_c$ is the number of training samples in class \( c \),
+- $N_c$ is the number of training samples in class $c$,
 - $D$ is the dimensionality of the latent space,
 - each row $z_i \in \mathbb{R}^D$ is a latent embedding vector.
 
@@ -37,11 +37,11 @@ $$
 \mu_c = \frac{1}{N_c} \sum_{i=1}^{N_c} z_i
 $$
 
-where $\mu_c \in \mathbb{R}^D$ represents the geometric prototype of class \( c \) in latent space.
+where $\mu_c \in \mathbb{R}^D$ represents the geometric prototype of class $c$ in latent space.
 
 ### Radial Distances
 
-For each training embedding of class \( c \), we compute its Euclidean distance to the centroid:
+For each training embedding of class $c$, we compute its Euclidean distance to the centroid:
 
 $$
 d_i = \| z_i - \mu_c \|_2
@@ -49,7 +49,7 @@ $$
 
 where $\|\cdot\|_2$ denotes the Euclidean norm.
 
-These distances characterize the dispersion of class \( c \) in latent space.
+These distances characterize the dispersion of class $c$ in latent space.
 
 ### Radial Threshold (Percentile-Based)
 
@@ -61,13 +61,13 @@ $$
 
 where:
 
-- $r_c$ is the radial threshold for class \( c \),
+- $r_c$ is the radial threshold for class $c$,
 - $q \in (0,1)$ is a percentile hyperparameter controlling the size of the acceptance region.
 
-Interpretation of \( q \):
+Interpretation of $q$:
 
-- Larger \( q \) → larger hypersphere → lower rejection rate  
-- Smaller \( q \) → tighter hypersphere → stricter detection  
+- Larger $q$ → larger hypersphere → lower rejection rate  
+- Smaller $q$ → tighter hypersphere → stricter detection  
 
 ### Empirical Interpretation (ECDF)
 
@@ -79,7 +79,7 @@ $$
 F_c(r) = \frac{1}{N_c} \sum_{i=1}^{N_c} \mathbf{1}(d_i \le r)
 $$
 
-where $F_c(r)$ represents the empirical probability that a training embedding of class \( c \) lies within distance \( r \) from its centroid.
+where $F_c(r)$ represents the empirical probability that a training embedding of class $c$ lies within distance $r$ from its centroid.
 
 The radial threshold can then be written as the inverse ECDF:
 
@@ -87,7 +87,7 @@ $$
 r_c = F_c^{-1}(q)
 $$
 
-Thus, the acceptance region for class \( c \) contains approximately a fraction \( q \) of its training embeddings.
+Thus, the acceptance region for class $c$ contains approximately a fraction $q$ of its training embeddings.
 
 This interpretation clarifies that the method fixes an empirical coverage level in latent space rather than selecting an arbitrary geometric radius.
 
@@ -103,7 +103,7 @@ we apply a three-stage geometric decision procedure in the learned latent space.
 
 ### 1) Nearest-Centroid Selection
 
-We compute the Euclidean distance between \( z \) and each class centroid:
+We compute the Euclidean distance between $z$ and each class centroid:
 
 $$
 d_c(z) = \| z - \mu_c \|_2
@@ -121,9 +121,9 @@ This step identifies the geometrically closest class prototype.
 
 Each class defines a confidence region represented by a hypersphere centered at $\mu_c$ with radius $r_c$.
 
-The embedding \( z \) is accepted as belonging to class $c^{*}$ only if:  
+The embedding $z$ is accepted as belonging to class $c^{*}$ only if:  
 
-$$d_{c^{*}}$$
+$$d_{c^{*}}(z) \le $$
 
 If $d_{c^{*}}(z) > r_{c^{*}}$ the sample lies outside all class-specific confidence regions and is rejected.
 
