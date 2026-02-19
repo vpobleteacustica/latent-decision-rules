@@ -142,7 +142,7 @@ The prediction function is defined as:
 $$
 \hat{y}(z) =
 \begin{cases}
-c^{\ast} & \text{if } d_{c^{\ast}}(z) \le r_{c^{\ast}} \\
+c^{\ast} & d_{c^{\ast}}(z) \le r_{c^{\ast}} \\
 \text{NO\_DETECT} & \text{otherwise}
 \end{cases}
 $$
