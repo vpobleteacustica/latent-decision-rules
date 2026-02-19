@@ -124,7 +124,7 @@ Each class defines a confidence region represented by a hypersphere centered at 
 The embedding $z$ is accepted as belonging to class $c^{*}$ only if:
 
 $$
-d_{c^*}(z) \le d_{c^*}
+d_{c^*}(z) \le c^*
 $$
 
 If the sample lies outside all class-specific confidence regions and is rejected.
