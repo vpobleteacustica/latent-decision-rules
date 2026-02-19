@@ -141,10 +141,12 @@ The prediction function is defined as:
 
 $$
 \hat{y}(z) =
+\left\{
 \begin{array}{ll}
 c^{\ast} & \text{if } d_{c^{\ast}}(z) \le r_{c^{\ast}} \\
 \mathrm{NO\_DETECT} & \text{otherwise}
 \end{array}
+\right.
 $$
 
 where $\hat{y}(z)$ denotes the predicted label produced by the radial decision rule.
