@@ -134,7 +134,7 @@ The prediction function is defined as:
 $$
 \hat{y}(z) =
 \begin{array}{ll}
-c^{*} & \text{if } d_{c^{*}}(z) \le r_{c^{*}} \\
+c^{*} & \text{if } d_{c^{*}}(z) \le r_{c^{{*}}} \\
 \text{NO\_DETECT} & \text{otherwise}
 \end{array}
 $$
