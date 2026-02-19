@@ -123,7 +123,7 @@ Each class defines a confidence region represented by a hypersphere centered at 
 
 The embedding $z$ is accepted as belonging to class $c^{*}$ only if:  
 
-$$d_{c^{*}}(z) \le r_{c^{*}}$$
+$$d_{c^{*}}(z) \le r_{c}$$
 
 If $d_{c^{*}}(z) > r_{c^{*}}$ the sample lies outside all class-specific confidence regions and is rejected.
 
@@ -134,7 +134,7 @@ The prediction function is defined as:
 $$
 \hat{y}(z) =
 \begin{array}{ll}
-c^{*} & \text{if } d_{c^{*}}(z) \le r_{c^*} \\
+c^{*} & \text{if } d_{c^{*}}(z) \le r_{c^{*}} \\
 \text{NO\_DETECT} & \text{otherwise}
 \end{array}
 $$
