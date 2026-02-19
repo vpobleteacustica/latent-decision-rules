@@ -127,7 +127,13 @@ $$
 d_{c^{*}}(z) \le r_{c^{\ast}}
 $$
 
-If the sample lies outside all class-specific confidence regions and is rejected.
+If 
+
+$$
+d_{c^{*}}(z) > r_{c^{\ast}},
+$$
+
+the sample lies outside all class-specific confidence regions and is rejected.
 
 ### 3) Final Decision Function
 
