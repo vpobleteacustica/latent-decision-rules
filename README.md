@@ -154,25 +154,30 @@ This formulation explicitly introduces a rejection mechanism, enabling open-set 
 ```text
 latent-decision-rules/
 │
+├── configs/                 # Optional experiment configuration files
+│
 ├── data/
-│   ├── embeddings/          # Precomputed latent embeddings (train/val/test)
-│   └── README.md            # Description of expected data format
+│   └── embeddings/          # Precomputed latent embeddings (train/val/test)
+│
+├── docs/                    # Supplementary documentation
+│
+├── examples/                # Minimal usage examples
 │
 ├── scripts/
-│   ├── 01_compute_centroids.py
-│   ├── 02_compute_radial_thresholds.py
-│   ├── 03_classify_with_radial_rule.py
-│   ├── 04_q_sweep_experiment.py
-│   ├── 21_summarize_q_sweep.py
-│   └── 22_plot_q_sweep.py
+│   └── run_q_sweep.py       # Main experimental entry point
 │
-├── outputs/
-│   ├── q_sweep_*/
-│   │   ├── predictions/
-│   │   ├── summary/
-│   │   └── plots/
+├── src/
+│   ├── classification/
+│   │   └── centroid_classifier.py
+│   │
+│   ├── models/
+│   │   └── radial_detector.py
+│   │
+│   ├── evaluation/
+│   │   └── metrics.py
+│   │
+│   └── utils/
 │
-├── environment.yml
 ├── requirements.txt
 └── README.md
 ```
@@ -194,33 +199,47 @@ The VAE architecture is assumed fixed and external to this repository.
 
 ## Experimental Pipeline
 
-The core scripts implement the full experimental workflow:
-	•	01_compute_centroids.py
-Computes class centroids from training embeddings.
-	•	02_compute_radial_thresholds.py
-Estimates class-specific thresholds ( r_c ) using quantile parameter ( q ).
-	•	03_classify_with_radial_rule.py
-Applies the geometric decision rule with rejection.
-	•	04_q_sweep_experiment.py
-Runs systematic evaluation across multiple ( q ) values.
-	•	21_summarize_q_sweep.py
-Aggregates metrics per split and per class.
-	•	22_plot_q_sweep.py
-Generates performance curves and distance distribution plots.
+The full experiment is orchestrated through:
 
-## Outputs
+    scripts/run_q_sweep.py
 
-The outputs/ directory contains automatically generated experimental results:
-	•	Metrics per split (train / val / test)
-	•	Per-class accuracy
-	•	Distance distributions
-	•	Performance curves as a function of \( q \)
+This script performs:
 
-## Reproducibility
+• Centroid computation from training embeddings  
+• Radial threshold estimation using quantile parameter q  
+• Classification with rejection  
+• Evaluation on train/validation/test splits  
+• Aggregation of metrics across multiple q values  
 
-Reproducible environments are provided via:
-	•	environment.yml (Conda)
-	•	requirements.txt (pip)
+All core logic is implemented modularly inside the `src/` directory:
+
+- `src/classification/` — centroid computation  
+- `src/models/` — radial decision rule  
+- `src/evaluation/` — metrics and evaluation utilities  
+- `src/utils/` — shared utilities and helper functions  
+
+This modular structure enables clean separation between geometric modeling, evaluation, and experimental orchestration.  
+
+## How to Reproduce
+
+1. Clone the repository:
+
+   git clone https://github.com/vpobleteacustica/latent-decision-rules.git
+   cd latent-decision-rules
+
+2. Install dependencies:
+
+   pip install -r requirements.txt
+
+3. Place precomputed latent embeddings inside:
+
+   data/embeddings/
+
+4. Run the experiment:
+
+   python scripts/run_q_sweep.py
+
+This will execute the radial decision rule across different q values and compute performance metrics.
 
 ## Limitations and Scope
 
